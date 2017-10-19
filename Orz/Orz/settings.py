@@ -25,7 +25,7 @@ SECRET_KEY = 'cstuvluw$ziir(=*fi@1-i245uqpj@zhuzw6)h81rdmvz%4=km'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
