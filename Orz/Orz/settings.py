@@ -120,3 +120,5 @@ USE_TZ = True
 
 STATIC_ROOT = '/project/static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+#STATICFILES_DIRS = ( '/project/Orz/Orz/orz_app/static',)
