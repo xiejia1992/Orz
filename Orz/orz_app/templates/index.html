@@ -28,7 +28,9 @@
     <div class="container">
         <div class="starter-template">
             <h1>Orz - Blog</h1>
-            <p>Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+            {% for article in all_article %}
+                <a href="{{ Column.get_absolute_url }}"> {{ article.caption }} </a> <br>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
