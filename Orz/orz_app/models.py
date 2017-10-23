@@ -39,7 +39,7 @@ class Article(models.Model):
     author = models.ForeignKey(Author)
     classification = models.ForeignKey(Classification)
     tags = models.ManyToManyField(Tag, blank=True)
-    content = models.TextField()
+    context = models.TextField()
 
     def __unicode__(self):
         return self.caption
