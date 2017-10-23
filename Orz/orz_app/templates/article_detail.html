@@ -28,12 +28,7 @@
     <div class="container">
         <div class="starter-template">
             <h1>Orz - Blog</h1>
-            {% for article in all_article %}
-                <a href="article/{{article.id}}"> {{ article.caption }} </a>
-            <br>
-                <span> {{article.publish_time}} </span>
-            <br>
-            {% endfor %}
+            {{ context.content }}
         </div>
     </div>
 {% endblock %}

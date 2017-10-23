@@ -20,4 +20,5 @@ from orz_app import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),
+    url(r'^article/(?P<id>\d)/$', views.article_detail),
 ]
