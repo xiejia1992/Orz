@@ -4,11 +4,11 @@
 {% block content %}
     <div class="new-container">
         <div class="starter-template">
-            <h1>{{context.caption}}</h1>
+            <h1 class="blog-name">{{context.caption}}</h1>
             <hr>
             {{ context.context | safe}}
+            <hr>
         </div>
-        <hr>
     </div>
 {% endblock %}
 

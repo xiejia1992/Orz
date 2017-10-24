@@ -29,7 +29,7 @@
             <h1>Orz - Blog</h1>
             <hr>
             {% for article in articles %}
-                <a href="article/{{article.id}}"> {{ article.caption }} </a>
+                <a class="blog-name" href="article/{{article.id}}"> {{ article.caption }} </a>
             <br>
                 <span>{{ article.context | safe | truncatewords:1 }} </span>
             <br>
