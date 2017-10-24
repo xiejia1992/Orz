@@ -2,7 +2,7 @@
 
 
 {% block navbar %}
-    <nav class="navbar navbar-inverse new-navbar-fixed-top" role="navigation">
+    <nav class="new-navbar navbar-inverse new-navbar-fixed-top" role="navigation">
         <div>
             <div>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -31,7 +31,7 @@
             {% for article in articles %}
                 <a href="article/{{article.id}}"> {{ article.caption }} </a>
             <br>
-                <span>{{ article.context | truncatewords:1 }} </span>
+                <span>{{ article.context | safe | truncatewords:1 }} </span>
             <br>
                 <span> {{article.publish_time | date:"Y-m-d"}} </span>
             <br>

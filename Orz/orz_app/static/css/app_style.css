@@ -2,10 +2,23 @@ body {
   padding-top: 0;
 }
 .starter-template {
-  padding: 40px 15px;
+  padding: 0px 15px;
   text-align: left;
 }
 .new-navbar-fixed-top {
   padding-right: 40px;
   padding-left: 40px;
+}
+.new-navbar {
+  border-radius: 0;
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+.new-container {
+  padding-right: 20%;
+  padding-left: 4%;
+  margin-right: auto;
+  margin-left: auto;
 }
