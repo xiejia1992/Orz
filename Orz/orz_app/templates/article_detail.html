@@ -7,9 +7,32 @@
             <h1 class="blog-name">{{context.caption}}</h1>
             <hr>
             {{ context.context | safe}}
+
+            {% for blog_comment in blog_comments %}
+                <p>{{ blog_comment.user_name }}</p>
+                <p>{{ blog_comment.blog_comment }}</p>
+            {% endfor %}
+
             <hr>
         </div>
     </div>
+    <div class="new-container-comment">
+        <form action="comment/" method="post">
+            <p>
+            <input id="user_name" type="text" name="user_name"/>
+            </p>
+            <p>
+            <input id="user_email" type="text" name="user_email"/>
+            </p>
+            <p>
+            <input id="blog_comment" type="textarea" name="blog_comment"/>
+            </p>
+            <p>
+            <input name="submit" type="submit" id="submit" tabindex="5" value="Submit" class="button" />
+            </p>
+        </form>
+    </div>
+
 {% endblock %}
 
 

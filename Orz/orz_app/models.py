@@ -45,4 +45,16 @@ class Article(models.Model):
         return self.caption
 
 
+class Comment(models.Model):
+    ''' 定义文章评论 '''
+    user_name = models.CharField(max_length=100)
+    user_email = models.EmailField(max_length=255)
+    blog_comment = models.TextField()
+    created_time = models.DateTimeField(auto_now_add=True)
+    article_id = models.ForeignKey('Article', on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return self.blog_comment[:30]
+
+
 # Create your models here.

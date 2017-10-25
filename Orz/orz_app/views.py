@@ -1,14 +1,16 @@
 # -*- coding:UTF-8 -*-
 
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
+from django.shortcuts import redirect, render_to_response
+from .forms import CommentForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from markdown import markdown
 from models import *
+from utils import *
 
 
 def index(request):
     all_article = Article.objects.all().order_by('-publish_time')
+    classifiications = Classification.objects.all()
     for article in all_article:
         article.context = markdown(article.context, ['codehilite'])
     paginator = Paginator(all_article, 5, 1)
@@ -19,13 +21,29 @@ def index(request):
         article = paginator.page(1)
     except EmptyPage:
         article = paginator.page(paginator.num_pages)
-    return render_to_response('index.html', {'articles': article})
+    return render_to_response('index.html', {"classifiication": classifiications, 'articles': article})
 
 
 def article_detail(request, id):
     article_all_detail = Article.objects.get(id=int(id))
+    blog_comments = Comment.objects.filter(article_id=int(id)).order_by('-created_time')
     article_all_detail.context = markdown(article_all_detail.context, ['codehilite'])
-    return render_to_response("article_detail.html", {'context': article_all_detail})
+    return render_to_response("article_detail.html",
+                              {'context': article_all_detail,
+                               "blog_comments": blog_comments
+                               })
 
+
+def comment_post(request, article_id):
+    article = Article.objects.get(id=article_id)
+    comment_form = CommentForms(request.POST)
+    comment = Comment.objects.create(
+        user_name=deal_post_comments_str(comment_form["user_name"]),
+        user_email=deal_post_comments_str(comment_form["user_email"]),
+        blog_comment=deal_post_blog_comments_str(comment_form["blog_comment"]),
+        article_id=article
+    )
+    comment.save()
+    return redirect(request.META['HTTP_REFERER'])
 
 # Create your views here.

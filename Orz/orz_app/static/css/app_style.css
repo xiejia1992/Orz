@@ -17,7 +17,7 @@ body {
   border: 1px solid transparent;
 }
 .new-container {
-  padding-right: 20%;
+  padding-right: 30%;
   padding-left: 4%;
   margin-right: auto;
   margin-left: auto;
@@ -29,4 +29,8 @@ body {
   margin: 10px auto;
   font-size: large;
   color: #243a4a;
+}
+.new-container-comment {
+  padding-left: 70%;
+  margin-top: 10px;
 }
