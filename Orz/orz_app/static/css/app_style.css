@@ -23,7 +23,9 @@ body {
   margin-left: auto;
 }
 .footer {
-  margin: 20px;
+  margin-left: 25px;
+  margin-top: 15px;
+  margin-bottom: 25px;
 }
 .blog-name {
   margin: 10px auto;
@@ -33,4 +35,9 @@ body {
 .new-container-comment {
   padding-left: 70%;
   margin-top: 10px;
+}
+.new-btn-info {
+  color: #9d9d9d;
+  background-color: #243a4a;
+  border-color: #243a4a;
 }
