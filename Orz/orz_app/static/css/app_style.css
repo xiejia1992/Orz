@@ -41,3 +41,8 @@ body {
   background-color: #243a4a;
   border-color: #243a4a;
 }
+.divcss {
+  border:2px solid #243a4a;
+  border-radius: 5px;
+  padding: 10px;
+}

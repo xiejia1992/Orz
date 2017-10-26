@@ -10,8 +10,9 @@
             <hr style="background-color: #243a4a;height: 2px;border: none ">
         </div>
 
+        <!-- 评论区  -->
         <div class="starter-template col-lg-3">
-            <hr style="margin-top: 48px;background-color: #243a4a;height: 2px;border: none">
+            <hr style="margin-top: 49px;background-color: #243a4a;height: 2px;border: none">
             <p class="blog-name"> 你的想法？</p>
             <form action="comment/" method="post">
                 <p>
@@ -33,11 +34,17 @@
             </form>
         </div>
 
+        <!-- 评论列表 -->
         <div class="starter-template col-lg-3">
-            {% for blog_comment in blog_comments %}
-                <p>{{ blog_comment.user_name }}</p>
-                <p>{{ blog_comment.blog_comment }}</p>
-            {% endfor %}
+            <p class="blog-name"> 其他人的BB...</p>
+            <div class="divcss">
+                {% for blog_comment in blog_comments %}
+                    <p><span style="color: #3299FF">{{ blog_comment.created_time | date:"Y-m-d" }} | </span>
+                        <span>{{ blog_comment.user_name }}</span></p>
+                    <p>{{ blog_comment.blog_comment }}</p>
+                    <hr>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

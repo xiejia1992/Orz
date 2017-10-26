@@ -30,7 +30,7 @@ def article_detail(request, id):
     article_all_detail.context = markdown(article_all_detail.context, ['codehilite'])
     return render_to_response("article_detail.html",
                               {'context': article_all_detail,
-                               "blog_comments": blog_comments
+                               "blog_comments": blog_comments[:10]
                                })
 
 
