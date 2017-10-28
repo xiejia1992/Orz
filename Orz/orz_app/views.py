@@ -10,7 +10,7 @@ from utils import *
 
 def index(request):
     all_article = Article.objects.all().order_by('-publish_time')
-    classifiications = Classification.objects.all()
+    classifications = Classification.objects.all()
     for article in all_article:
         article.context = markdown(article.context, ['codehilite'])
     paginator = Paginator(all_article, 5, 1)
@@ -21,7 +21,7 @@ def index(request):
         article = paginator.page(1)
     except EmptyPage:
         article = paginator.page(paginator.num_pages)
-    return render_to_response('index.html', {"classifiication": classifiications, 'articles': article})
+    return render_to_response('index.html', {"classifications": classifications, 'articles': article})
 
 
 def article_detail(request, id):
@@ -45,5 +45,24 @@ def comment_post(request, article_id):
     )
     comment.save()
     return redirect(request.META['HTTP_REFERER'])
+
+
+def show_classification(request, classification):
+    classifica = Classification.objects.get(english_name=classification)
+    classification_id = classifica.id
+    all_article = Article.objects.filter(classification=int(classification_id)).order_by('-publish_time')
+    classifications = Classification.objects.all()
+    for article in all_article:
+        article.context = markdown(article.context, ['codehilite'])
+    paginator = Paginator(all_article, 5, 1)
+    page = request.GET.get('page')
+    try:
+        article = paginator.page(page)
+    except PageNotAnInteger:
+        article = paginator.page(1)
+    except EmptyPage:
+        article = paginator.page(paginator.num_pages)
+    return render_to_response('index.html', {"classifications": classifications, 'articles': article})
+
 
 # Create your views here.

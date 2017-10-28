@@ -15,10 +15,11 @@ class Tag(models.Model):
 
 class Classification(models.Model):
     ''' 定义类别模型 '''
-    classifiication_name = models.CharField(max_length=64)
+    classification_name = models.CharField(max_length=64)
+    english_name = models.CharField(max_length=64)
 
     def __unicode__(self):
-        return self.classifiication_name
+        return self.classification_name
 
 
 class Author(models.Model):
