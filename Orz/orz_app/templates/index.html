@@ -47,7 +47,7 @@
             <h1 style="text-align: center">Orz</h1>
             <hr style="background-color: #243a4a;height: 2px;border: none ">
             {% for article in articles %}
-                <a class="blog-name" href="/article/{{article.id}}"> {{ article.caption }} </a>
+                <a style="text-decoration:none" class="blog-name" href="/article/{{article.id}}"> {{ article.caption }} </a>
             <br>
                 <span>{{ article.context | safe | truncatewords:1 }} </span>
             <br>

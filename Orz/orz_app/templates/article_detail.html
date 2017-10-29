@@ -19,17 +19,19 @@
                 <input style="border-radius:5px;border-color: #243a4a;width:95%;" id="user_name" placeholder="昵称..." type="text" name="user_name"/>
                 <span class="required" style="color: #FF0000">  *</span>
                 </p>
+                <p class="user_name_tip" style="color: red;display: none;">昵称不能为空且不能大于30个字符</p>
                 <p>
                 <input style="border-radius:5px;border-color: #243a4a;width:95%;" id="user_email" placeholder="邮箱(不会被公开)" type="text" name="user_email"/>
                 <span class="required" style="color: #FF0000">  *</span>
                 </p>
+                <p class="user_email_tip" style="color: red;display: none;">邮箱输入不正确</p>
                 <div class="controls">
                     <div class="textarea">
                     <textarea style="border-radius:5px;border:solid 2px #243a4a;width:100%;height:100px" id="blog_comment" placeholder="说点什么..." type="" class="" name="blog_comment"></textarea>
                     </div>
                 </div>
                 <p>
-                <input style="margin-left: 78%" name="submit" type="submit" id="submit" tabindex="5" value="提交" class="btn new-btn-info" />
+                <input style="margin-left: 78%" name="submit" type="button" id="submit" tabindex="5" value="提交" class="btn new-btn-info" />
                 </p>
             </form>
         </div>
@@ -54,7 +56,33 @@
     <script src="/static/js/jquery-3.2.1.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script>
-        $(function(){$('pre').css({"background-color":"#243a4a","color":"#e2dfdf"});});
+        $(function(){
+            var reg_mail=/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+            $('pre').css({"background-color":"#243a4a","color":"#e2dfdf"});
+            $('#user_name').keydown(function () {
+                $('.user_name_tip').hide();
+            });
+            $('#user_email').keydown(function () {
+                $('.user_email_tip').hide();
+            });
+
+            $('#submit').click(function () {
+                var submitJudge=true;
+                if($('input[name="user_name"]').val()==""||$('input[name="user_name"]').val().length>30){
+                    submitJudge=false;
+                    $('.user_name_tip').show();
+
+                }
+                if(!(reg_mail.test($('#user_email').val()))){
+                    submitJudge=false;
+                    $('.user_email_tip').show();
+                }
+                if(submitJudge){
+                    $('#submit').attr('type','submit');
+                    $('#submit').click();
+                }
+            })
+        });
         document.getElementById('submit').onmouseover = function(){this.style.color = '#fff'}
         document.getElementById('submit').onmouseout = function(){this.style.color = '#e2dfdf'}
     </script>
