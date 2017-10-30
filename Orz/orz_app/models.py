@@ -40,6 +40,7 @@ class Article(models.Model):
     author = models.ForeignKey(Author)
     classification = models.ForeignKey(Classification)
     tags = models.ManyToManyField(Tag, blank=True)
+    image_name = models.CharField(max_length=64)
     context = models.TextField()
 
     def __unicode__(self):
