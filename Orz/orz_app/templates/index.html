@@ -46,16 +46,23 @@
         <div class="starter-template">
             <h1 style="text-align: center">Orz</h1>
             <hr style="background-color: #243a4a;height: 2px;border: none ">
+            <div>
             {% for article in articles %}
+                <div style="width: 120px;height: 120px" class="col-lg-2 divcss">
+
+                </div>
+                <div class="col-lg-10">
                 <a style="text-decoration:none" class="blog-name" href="/article/{{article.id}}"> {{ article.caption }} </a>
-            <br>
-                <span>{{ article.context | safe | truncatewords:1 }} </span>
-            <br>
-                <span> {{article.publish_time | date:"Y-m-d"}} </span>
-            <br>
-            <br>
-            <br>
+                <br>
+                <div style="margin-left: 15px">{{ article.context | safe | truncatewords:1 }} </div>
+                <br>
+                <div style="margin-left: 15px"> {{article.publish_time | date:"Y-m-d"}} </div>
+                <br>
+                <br>
+                <br>
+                </div>
             {% endfor %}
+            </div>
         </div>
     </div>
 
