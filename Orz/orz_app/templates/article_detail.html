@@ -48,6 +48,14 @@
                 {% endfor %}
             </div>
         </div>
+
+        <!--  返回顶部  -->
+        <div>
+            <div class="back-to-top" style="display: none; position: fixed; right: 90px; bottom: 30px;">
+            <img src="/static/image/top.png" width="40">
+            </div>
+        </div>
+
     </div>
 {% endblock %}
 
@@ -85,5 +93,23 @@
         });
         document.getElementById('submit').onmouseover = function(){this.style.color = '#fff'}
         document.getElementById('submit').onmouseout = function(){this.style.color = '#e2dfdf'}
+
+        /* 返回顶部 */
+        $(document).ready(function (){
+            $(window).scroll(function(){
+                if ($(window).scrollTop()>100){
+                    $(".back-to-top").fadeIn(1000);
+                }
+                else
+                {
+                    $(".back-to-top").fadeOut(1000);
+                }
+            });
+
+            $(".back-to-top").click(function(){
+                $('body,html').animate({scrollTop:0},2000);
+                return false;
+            });
+        });
     </script>
 {% endblock %}
