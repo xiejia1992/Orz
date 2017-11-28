@@ -5,9 +5,24 @@
     <div class="container">
         <div class="starter-template col-lg-9">
             <h1 style="text-align: center" class="blog-name">{{context.caption}}</h1>
-            <hr style="background-color: #243a4a;height: 2px;border: none ">
+            <!-- article_description -->
+            <div class="col-lg-12">
+                <div class="col-lg-3">
+                   <p><i class="fa fa-calendar" style="color:#243a4a;"></i>创建：{{context.publish_time | date:"Y-m-d"}}</p>
+                </div>
+                <div class="col-lg-3">
+                    <p><i class="fa fa-calendar" style="color:#243a4a;"></i>更新：{{context.update_time | date:"Y-m-d"}}</p>
+                </div>
+                <div class="col-lg-3">
+                    <p><i class="fa fa-bookmark" style="color:#243a4a;"></i>分类：{{context.classification}}</p>
+                </div>
+                <div class="col-lg-3">
+                    <p><i class="fa fa-user" style="color:#243a4a;"></i>作者：{{context.author}}</p>
+                </div>
+            </div>
+            <hr style="background-color: #243a4a;height: 2px;border: none;margin-top: 40px">
             {{ context.context | safe}}
-            <hr style="background-color: #243a4a;height: 2px;border: none ">
+            <hr style="background-color: #243a4a;height: 2px;border: none">
         <!--  上一篇下一篇  -->
         <div class="col-lg-6">
             {% for pre_article in pre_articles %}
@@ -27,7 +42,7 @@
 
         <!-- 评论区  -->
         <div class="starter-template col-lg-3">
-            <hr style="margin-top: 49px;background-color: #243a4a;height: 2px;border: none">
+            <hr style="margin-top: 36px;background-color: #243a4a;height: 2px;border: none">
             <p class="blog-name"> 你的想法？</p>
             <form action="comment/" method="post">
                 <p>
