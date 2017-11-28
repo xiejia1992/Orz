@@ -42,9 +42,14 @@ class Article(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     image_name = models.CharField(max_length=64)
     context = models.TextField()
+    counts = models.PositiveIntegerField(default=0)
 
     def __unicode__(self):
         return self.caption
+
+    def add_counts(self):
+        self.counts += 1
+        self.save(update_fields=['counts'])
 
 
 class Comment(models.Model):

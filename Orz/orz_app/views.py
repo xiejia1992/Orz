@@ -1,7 +1,6 @@
 # -*- coding:UTF-8 -*-
 
 from django.shortcuts import redirect, render_to_response
-from django.forms.models import model_to_dict
 from .forms import CommentForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from markdown import markdown
@@ -28,6 +27,8 @@ def index(request):
 def article_detail(request, id):
     #当前id的文章具体内容
     article_all_detail = Article.objects.get(id=int(id))
+    # 阅读量+1
+    article_all_detail.add_counts()
     #当前id的文章前10条评论
     blog_comments = Comment.objects.filter(article_id=int(id)).order_by('-created_time')[:10]
     #文章高亮
