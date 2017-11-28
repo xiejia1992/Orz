@@ -11,12 +11,12 @@
         <!--  上一篇下一篇  -->
         <div class="col-lg-6">
             {%  for pre_article in pre_articles %}
-            <a style="text-decoration: none" href="/article/{{ pre_article.id }}"><i class="fa fa-arrow-left" style="color:#243a4a"></i>{{ pre_article.caption }}</a>
+            <a style="text-decoration: none;color: #243a4a" href="/article/{{ pre_article.id }}"><i class="fa fa-arrow-left" style="color:#243a4a;font-size: 18px"></i> {{ pre_article.caption }}</a>
             {% endfor %}
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" style="text-align: right">
             {%  for next_article in next_articles %}
-            <a style="text-decoration: none" href="/article/{{ next_article.id }}"><i class="fa fa-arrow-right" style="color:#243a4a"></i>{{ next_article.caption }} </a>
+            <a style="text-decoration: none;color: #243a4a" href="/article/{{ next_article.id }}"><i class="fa fa-arrow-right" style="color:#243a4a;font-size: 18px"></i> {{ next_article.caption }} </a>
             {% endfor %}
         </div>
         </div>
