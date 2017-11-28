@@ -10,13 +10,17 @@
             <hr style="background-color: #243a4a;height: 2px;border: none ">
         <!--  上一篇下一篇  -->
         <div class="col-lg-6">
-            {%  for pre_article in pre_articles %}
-            <a style="text-decoration: none;color: #243a4a" href="/article/{{ pre_article.id }}"><i class="fa fa-arrow-left" style="color:#243a4a;font-size: 18px"></i> {{ pre_article.caption }}</a>
+            {% for pre_article in pre_articles %}
+                <a style="text-decoration: none;color: #243a4a" href="/article/{{ pre_article.id }}">{{ pre_article.caption }} <i class="fa fa-arrow-left" style="color:#243a4a;font-size: 18px"></i> </a>
+            {% empty %}
+                <p style="color: #243a4a;font-size: 14px"><strong>已经是最早的一篇文章啦!!!</strong></p>
             {% endfor %}
         </div>
         <div class="col-lg-6" style="text-align: right">
             {%  for next_article in next_articles %}
             <a style="text-decoration: none;color: #243a4a" href="/article/{{ next_article.id }}"><i class="fa fa-arrow-right" style="color:#243a4a;font-size: 18px"></i> {{ next_article.caption }} </a>
+            {% empty %}
+                <p style="color: #243a4a;font-size: 14px"><strong>这是最新的一篇文章哟!!!</strong></p>
             {% endfor %}
         </div>
         </div>
