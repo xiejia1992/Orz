@@ -11,6 +11,7 @@ from utils import *
 def index(request):
     all_article = Article.objects.all().order_by('-publish_time')
     classifications = Classification.objects.all()
+    hot_articles = Article.objects.all().order_by('-counts')[:5]
     for article in all_article:
         article.context = markdown(article.context, ['codehilite'])
     paginator = Paginator(all_article, 5, 1)
@@ -21,7 +22,9 @@ def index(request):
         article = paginator.page(1)
     except EmptyPage:
         article = paginator.page(paginator.num_pages)
-    return render_to_response('index.html', {"classifications": classifications, 'articles': article})
+    return render_to_response('index.html', {"classifications": classifications,
+                                             "hot_articles": hot_articles,
+                                             "articles": article})
 
 
 def article_detail(request, id):
