@@ -8,6 +8,17 @@
             <hr style="background-color: #243a4a;height: 2px;border: none ">
             {{ context.context | safe}}
             <hr style="background-color: #243a4a;height: 2px;border: none ">
+        <!--  上一篇下一篇  -->
+        <div class="col-lg-6">
+            {%  for pre_article in pre_articles %}
+            <a style="text-decoration: none" href="/article/{{ pre_article.id }}"><i class="fa fa-arrow-left" style="color:#243a4a"></i>{{ pre_article.caption }}</a>
+            {% endfor %}
+        </div>
+        <div class="col-lg-6">
+            {%  for next_article in next_articles %}
+            <a style="text-decoration: none" href="/article/{{ next_article.id }}"><i class="fa fa-arrow-right" style="color:#243a4a"></i>{{ next_article.caption }} </a>
+            {% endfor %}
+        </div>
         </div>
 
         <!-- 评论区  -->
@@ -107,7 +118,7 @@
             });
 
             $(".back-to-top").click(function(){
-                $('body,html').animate({scrollTop:0},2000);
+                $('body,html').animate({scrollTop:0},1000);
                 return false;
             });
         });

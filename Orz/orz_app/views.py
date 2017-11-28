@@ -1,6 +1,7 @@
 # -*- coding:UTF-8 -*-
 
 from django.shortcuts import redirect, render_to_response
+from django.forms.models import model_to_dict
 from .forms import CommentForms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from markdown import markdown
@@ -25,12 +26,21 @@ def index(request):
 
 
 def article_detail(request, id):
+    #当前id的文章具体内容
     article_all_detail = Article.objects.get(id=int(id))
-    blog_comments = Comment.objects.filter(article_id=int(id)).order_by('-created_time')
+    #当前id的文章前10条评论
+    blog_comments = Comment.objects.filter(article_id=int(id)).order_by('-created_time')[:10]
+    #文章高亮
     article_all_detail.context = markdown(article_all_detail.context, ['codehilite'])
+    #获取当前id的上一篇文章和下一篇文章
+    pre_articles = Article.objects.filter(id__lt=int(id)).order_by('-publish_time')[:1]
+    next_articles = Article.objects.filter(id__gt=int(id)).order_by('publish_time')[:1]
+
     return render_to_response("article_detail.html",
                               {'context': article_all_detail,
-                               "blog_comments": blog_comments[:10]
+                               "blog_comments": blog_comments,
+                               "pre_articles": pre_articles,
+                               "next_articles": next_articles
                                })
 
 
