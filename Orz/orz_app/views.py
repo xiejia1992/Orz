@@ -65,6 +65,7 @@ def show_classification(request, classification):
     classifica = Classification.objects.get(english_name=classification)
     classification_id = classifica.id
     all_article = Article.objects.filter(classification=int(classification_id)).order_by('-publish_time')
+    hot_articles = Article.objects.filter(classification=int(classification_id)).order_by('-counts')[:5]
     classifications = Classification.objects.all()
     for article in all_article:
         article.context = markdown(article.context, ['codehilite'])
@@ -76,7 +77,9 @@ def show_classification(request, classification):
         article = paginator.page(1)
     except EmptyPage:
         article = paginator.page(paginator.num_pages)
-    return render_to_response('index.html', {"classifications": classifications, 'articles': article})
+    return render_to_response('index.html', {"classifications": classifications,
+                                             "hot_articles": hot_articles,
+                                             'articles': article})
 
 
 # Create your views here.
