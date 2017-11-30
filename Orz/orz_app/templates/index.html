@@ -130,3 +130,18 @@
         </div>
     </footer>
 {% endblock %}
+
+
+{% block scripts %}
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            $(".tags").hover(function () {
+                $(this).css("color","blue");
+            }, function () {
+                $(this).css("color","#243a4a");
+            });
+        });
+    </script>
+{% endblock %}
