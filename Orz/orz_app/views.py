@@ -9,11 +9,18 @@ from utils import *
 
 
 def index(request):
+    #首页所有文章
     all_article = Article.objects.all().order_by('-publish_time')
+    #文章分类
     classifications = Classification.objects.all()
+    #热门文章top5
     hot_articles = Article.objects.all().order_by('-counts')[:5]
+    #所有标签
+    all_tags = Tag.objects.all()
+    #文章内容使用markdown格式
     for article in all_article:
         article.context = markdown(article.context, ['codehilite'])
+    # 分页
     paginator = Paginator(all_article, 5, 1)
     page = request.GET.get('page')
     try:
@@ -24,6 +31,7 @@ def index(request):
         article = paginator.page(paginator.num_pages)
     return render_to_response('index.html', {"classifications": classifications,
                                              "hot_articles": hot_articles,
+                                             "all_tags": all_tags,
                                              "articles": article})
 
 
@@ -81,5 +89,27 @@ def show_classification(request, classification):
                                              "hot_articles": hot_articles,
                                              'articles': article})
 
+
+def show_tag(request, tag):
+    tag_detail = Tag.objects.get(tag_name=tag)
+    tag_id = tag_detail.id
+    all_article = Tag.objects.get(id=int(tag_id)).article_set.all().order_by('-publish_time')
+    hot_articles = Tag.objects.get(id=int(tag_id)).article_set.all().order_by('-publish_time').order_by('-counts')[:5]
+    classifications = Classification.objects.all()
+    all_tags = Tag.objects.all()
+    for article in all_article:
+        article.context = markdown(article.context, ['codehilite'])
+    paginator = Paginator(all_article, 5, 1)
+    page = request.GET.get('page')
+    try:
+        article = paginator.page(page)
+    except PageNotAnInteger:
+        article = paginator.page(1)
+    except EmptyPage:
+        article = paginator.page(paginator.num_pages)
+    return render_to_response('index.html', {"classifications": classifications,
+                                             "hot_articles": hot_articles,
+                                             "all_tags": all_tags,
+                                             'articles': article})
 
 # Create your views here.

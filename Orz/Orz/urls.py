@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^article/(?P<id>(\d+))/$', views.article_detail),
     url(r'^article/(?P<article_id>(\d+))/comment/$', views.comment_post),
-    url(r'^article/(?P<classification>([a-z]+))/$', views.show_classification),
+    url(r'^article_class/(?P<classification>([a-z]+))/$', views.show_classification),
+    url(r'^article_tag/(?P<tag>([a-zA-Z]+))/$', views.show_tag),
 ]

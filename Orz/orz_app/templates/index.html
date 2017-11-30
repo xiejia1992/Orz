@@ -21,16 +21,16 @@
                     </a>
                     <ul style="min-width: 0%" class="dropdown-menu">
                             <li>
-                            <a style="padding: 5px 14px" href="/article/tool/"> 工具安装 </a>
+                            <a style="padding: 5px 14px" href="/article_class/tool/"> 工具安装 </a>
                             </li>
                             <li>
-                            <a style="padding: 5px 14px" href="/article/command/"> 命令备忘 </a>
+                            <a style="padding: 5px 14px" href="/article_class/command/"> 命令备忘 </a>
                             </li>
                             <li>
-                            <a style="padding: 5px 14px" href="/article/learn/"> 学习笔记 </a>
+                            <a style="padding: 5px 14px" href="/article_class/learn/"> 学习笔记 </a>
                             </li>
                             <li>
-                            <a style="padding: 5px 14px" href="/article/technology/"> 技术分享 </a>
+                            <a style="padding: 5px 14px" href="/article_class/technology/"> 技术分享 </a>
                             </li>
                     </ul>
                 </li>
@@ -70,6 +70,14 @@
                 {% for hot_article in hot_articles %}
                     <a style="color: #243a4a; text-decoration: none" href="/article/{{hot_article.id}}">{{hot_article.caption}}</a>
                     <hr>
+                {% endfor %}
+            </div>
+
+            <!-- tags -->
+            <div class="divcss col-lg-3">
+                <p style="color: #3dccff"><strong> 标签:</strong></p>
+                {% for tag in all_tags %}
+                <a href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
                 {% endfor %}
             </div>
         </div>
