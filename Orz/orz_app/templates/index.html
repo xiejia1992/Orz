@@ -63,6 +63,15 @@
                 </div>
             {% endfor %}
             </div>
+
+            <!-- tags -->
+            <div class="divcss col-lg-3">
+                <p style="color: #3dccff"><strong> 标签:</strong></p>
+                {% for tag in all_tags %}
+                <a href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
+                {% endfor %}
+            </div>
+
             <!-- hot top5 -->
             <div class="divcss col-lg-3">
                 <p style="color: #FF0000"><strong> Hot Top5:</strong></p>
@@ -73,13 +82,6 @@
                 {% endfor %}
             </div>
 
-            <!-- tags -->
-            <div class="divcss col-lg-3">
-                <p style="color: #3dccff"><strong> 标签:</strong></p>
-                {% for tag in all_tags %}
-                <a href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
-                {% endfor %}
-            </div>
         </div>
     </div>
 

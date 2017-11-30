@@ -94,7 +94,7 @@ def show_tag(request, tag):
     tag_detail = Tag.objects.get(tag_name=tag)
     tag_id = tag_detail.id
     all_article = Tag.objects.get(id=int(tag_id)).article_set.all().order_by('-publish_time')
-    hot_articles = Tag.objects.get(id=int(tag_id)).article_set.all().order_by('-publish_time').order_by('-counts')[:5]
+    hot_articles = Tag.objects.get(id=int(tag_id)).article_set.all().order_by('-counts')[:5]
     classifications = Classification.objects.all()
     all_tags = Tag.objects.all()
     for article in all_article:
