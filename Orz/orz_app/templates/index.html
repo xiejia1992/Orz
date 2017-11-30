@@ -68,7 +68,7 @@
             <div class="divcss col-lg-3">
                 <p style="color: #3dccff"><strong> 标签:</strong></p>
                 {% for tag in all_tags %}
-                <a href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
+                <a class="tags" href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
                 {% endfor %}
             </div>
 

@@ -75,6 +75,7 @@ def show_classification(request, classification):
     all_article = Article.objects.filter(classification=int(classification_id)).order_by('-publish_time')
     hot_articles = Article.objects.filter(classification=int(classification_id)).order_by('-counts')[:5]
     classifications = Classification.objects.all()
+    all_tags = Tag.objects.all()
     for article in all_article:
         article.context = markdown(article.context, ['codehilite'])
     paginator = Paginator(all_article, 5, 1)
@@ -87,6 +88,7 @@ def show_classification(request, classification):
         article = paginator.page(paginator.num_pages)
     return render_to_response('index.html', {"classifications": classifications,
                                              "hot_articles": hot_articles,
+                                             "all_tags": all_tags,
                                              'articles': article})
 
 
