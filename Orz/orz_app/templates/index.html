@@ -65,13 +65,19 @@
             </div>
 
             <!-- tags -->
-            <div class="divcss col-lg-3">
+            <div style="height: 150px" class="divcss col-lg-3">
+                <div class="tag_div">
                 <p style="color: #3dccff"><strong> 标签:</strong></p>
                 {% for tag in all_tags %}
-                <a class="tags" href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
+                <a class="tags" style="text-decoration: none" href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
                 {% endfor %}
+                </div>
             </div>
 
+            <!-- 分隔 -->
+            <div class="col-lg-3">
+                <br>
+            </div>
             <!-- hot top5 -->
             <div class="divcss col-lg-3">
                 <p style="color: #FF0000"><strong> Hot Top5:</strong></p>
@@ -138,9 +144,21 @@
     <script>
         $(document).ready(function (){
             $(".tags").hover(function () {
-                $(this).css("color","blue");
+                $(this).css({"color":"#3dccff","font-size":"+=0.5em"});
             }, function () {
-                $(this).css("color","#243a4a");
+                $(this).css({"color":"#243a4a","font-size":"-=0.5em"});
+            });
+        });
+
+        $(document).ready(function () {
+            $(".tag_div a").each(function () {
+                $(this).css('fontSize',(getFontSize=function(){
+                    fontsize=Math.round(Math.random()*20)/10
+                    if(fontsize<1){
+                        return getFontSize()
+                    }
+                    return fontsize
+                })()+'em')
             });
         });
     </script>
