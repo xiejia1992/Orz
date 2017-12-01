@@ -49,7 +49,9 @@
             <div class="col-lg-9">
             {% for article in articles %}
                 <div style="width: 120px;height: 120px" class="col-lg-2 divcss">
+                    <a href="/article/{{article.id}}">
                     <img style="width:100%;height: 100%" src="/static/image/{{article.image_name}}.jpg" alt="{{article.image_name}}"/>
+                    </a>
                 </div>
                 <div class="col-lg-10">
                 <a style="text-decoration:none" class="blog-name" href="/article/{{article.id}}"> {{ article.caption }} </a>
@@ -65,29 +67,30 @@
             </div>
 
             <!-- tags -->
-            <div style="height: 250px" class="divcss col-lg-3">
-                <div class="tag_div" style="line-height: 22px">
-                <p style="color: #3dccff"><strong> 标签:</strong></p>
-                {% for tag in all_tags %}
-                <a class="tags" style="text-decoration: none" href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
-                {% endfor %}
+            <div class="col-lg-3">
+                <div style="height: 250px" class="divcss">
+                    <div class="tag_div" style="line-height: 22px">
+                    <p style="color: #3dccff"><strong> 标签:</strong></p>
+                    {% for tag in all_tags %}
+                    <a class="tags" style="text-decoration: none" href="/article_tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
+                    {% endfor %}
+                    </div>
+                </div>
+
+                <!-- 分隔 -->
+                <div>
+                    <br>
+                </div>
+                <!-- hot top5 -->
+                <div class="divcss">
+                    <p style="color: #FF0000"><strong> Hot Top5:</strong></p>
+                    <hr>
+                    {% for hot_article in hot_articles %}
+                        <a style="color: #243a4a; text-decoration: none" href="/article/{{hot_article.id}}">{{hot_article.caption}}</a>
+                        <hr>
+                    {% endfor %}
                 </div>
             </div>
-
-            <!-- 分隔 -->
-            <div class="col-lg-3">
-                <br>
-            </div>
-            <!-- hot top5 -->
-            <div class="divcss col-lg-3">
-                <p style="color: #FF0000"><strong> Hot Top5:</strong></p>
-                <hr>
-                {% for hot_article in hot_articles %}
-                    <a style="color: #243a4a; text-decoration: none" href="/article/{{hot_article.id}}">{{hot_article.caption}}</a>
-                    <hr>
-                {% endfor %}
-            </div>
-
         </div>
     </div>
 
