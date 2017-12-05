@@ -18,5 +18,6 @@ from orz_app_api import views
 
 
 urlpatterns = [
-    url(r'^author/$', views.author_list),
+    url(r'^authors/$', views.authors_list),
+    url(r'^authors/(?P<id>(\d+))/$', views.author_detail),
 ]
