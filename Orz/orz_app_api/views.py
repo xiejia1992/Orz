@@ -16,8 +16,8 @@ def author_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        print request.body
-        serializer = AuthorSerializer(data = json.loads(request.body))
+        print request.data
+        serializer = AuthorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
