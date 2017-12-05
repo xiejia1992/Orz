@@ -36,15 +36,23 @@ def author_detail(request, id):
         return Response(serializer.data)
 
     elif request.method == "PUT":
-        serializer = AuthorSerializer(author, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        data = u'禁止更新'
+        return Response(data, status=status.HTTP_403_FORBIDDEN)
 
     elif request.method == "DELETE":
-        author.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        data = u'禁止删除'
+        return Response(data, status=status.HTTP_403_FORBIDDEN)
+
+#    elif request.method == "PUT":
+#        serializer = AuthorSerializer(author, data=request.data)
+#        if serializer.is_valid():
+#            serializer.save()
+#            return Response(serializer.data)
+#        else:
+#            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#    elif request.method == "DELETE":
+#        author.delete()
+#        return Response(status=status.HTTP_204_NO_CONTENT)
 
 # Create your views here.
