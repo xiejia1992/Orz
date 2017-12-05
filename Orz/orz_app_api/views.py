@@ -16,12 +16,16 @@ def authors_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = AuthorSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        data = u'禁止添加'
+        return Response(data, status=status.HTTP_403_FORBIDDEN)
+
+#    elif request.method == 'POST':
+#        serializer = AuthorSerializer(data=request.data)
+#        if serializer.is_valid():
+#            serializer.save()
+#            return Response(serializer.data, status=status.HTTP_201_CREATED)
+#        else:
+#            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
