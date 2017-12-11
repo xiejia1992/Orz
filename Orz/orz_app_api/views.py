@@ -1,62 +1,66 @@
 # -*- coding: utf-8 -*-
 
-import json
-from rest_framework import status
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from orz_app.models import Author
-from .serializer import AuthorSerializer
+from orz_app.models import Author, Article
+from .serializer import AuthorSerializer, ArticleSerializer
+from .api_method_utils import get_model_list, add_model, get_model_id, put_model_id, delete_model_id
 
 
 @api_view(['GET', 'POST'])
-def authors_list(request):
-    if request.method == "GET":
-        authors = Author.objects.all()
-        serializer = AuthorSerializer(authors, many=True)
-        return Response(serializer.data)
-
+def author_list(request):
+    if request.method == 'GET':
+        return get_model_list(request=request,
+                              Model=Author,
+                              Serializer=AuthorSerializer)
     elif request.method == 'POST':
-        data = u'禁止添加'
-        return Response(data, status=status.HTTP_403_FORBIDDEN)
-
-#    elif request.method == 'POST':
-#        serializer = AuthorSerializer(data=request.data)
-#        if serializer.is_valid():
-#            serializer.save()
-#            return Response(serializer.data, status=status.HTTP_201_CREATED)
-#        else:
-#            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return add_model(request=request,
+                         Model=Author,
+                         Serializer=AuthorSerializer)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def author_detail(request, id):
-    try:
-        author = Author.objects.get(id=id)
-    except Author.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        return get_model_id(request=request,
+                            id=id,
+                            Model=Author,
+                            Serializer=AuthorSerializer)
+    elif request.method == 'PUT':
+        return put_model_id(request=request,
+                            id=id, Model=Author,
+                            Serializer=AuthorSerializer)
+    elif request.method == 'DELETE':
+        return delete_model_id(request=request,
+                               id=id,
+                               Model=Author)
 
-    if request.method == "GET":
-        serializer = AuthorSerializer(author)
-        return Response(serializer.data)
 
-    elif request.method == "PUT":
-        data = u'禁止更新'
-        return Response(data, status=status.HTTP_403_FORBIDDEN)
+@api_view(['GET', 'POST'])
+def article_list(request):
+    if request.method == 'GET':
+        return get_model_list(request=request,
+                              Model=Article,
+                              Serializer=ArticleSerializer)
+    elif request.method == 'POST':
+        return add_model(request=request,
+                         Model=Article,
+                         Serializer=ArticleSerializer)
 
-    elif request.method == "DELETE":
-        data = u'禁止删除'
-        return Response(data, status=status.HTTP_403_FORBIDDEN)
 
-#    elif request.method == "PUT":
-#        serializer = AuthorSerializer(author, data=request.data)
-#        if serializer.is_valid():
-#            serializer.save()
-#            return Response(serializer.data)
-#        else:
-#            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#    elif request.method == "DELETE":
-#        author.delete()
-#        return Response(status=status.HTTP_204_NO_CONTENT)
+@api_view(['GET', 'PUT', 'DELETE'])
+def article_detail(request, id):
+    if request.method == 'GET':
+        return get_model_id(request=request,
+                            id=id,
+                            Model=Article,
+                            Serializer=ArticleSerializer)
+    elif request.method == 'PUT':
+        return put_model_id(request=request,
+                            id=id, Model=Article,
+                            Serializer=ArticleSerializer)
+    elif request.method == 'DELETE':
+        return delete_model_id(request=request,
+                               id=id,
+                               Model=Article)
 
 # Create your views here.

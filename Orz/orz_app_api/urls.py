@@ -14,10 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from rest_framework.urlpatterns import format_suffix_patterns
 from orz_app_api import views
 
 
 urlpatterns = [
-    url(r'^authors/$', views.authors_list),
+    url(r'^authors/$', views.author_list),
     url(r'^authors/(?P<id>(\d+))/$', views.author_detail),
+    url(r'^articles/$', views.article_list),
+    url(r'^articles/(?P<id>(\d+))/$', views.article_detail),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
